@@ -27,8 +27,10 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
+      - name: Check out repository code
+        uses: actions/checkout@1d96c772d19495a3b5c517cd2bc0cb401ea0529f # v4.1.3
+        
       - name: Prepend the patch path to the PATH variable
-        if: ${{ steps.check_dir.outputs.exists == '1' }}
         run: |
           echo "Prepend the patched cmsis-toolbox version path to the PATH variable"
           export PATH="/patch/cmsis-toolbox-linux-amd64${PATH:+:${PATH}}"
